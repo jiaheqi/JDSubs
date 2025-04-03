@@ -58,7 +58,16 @@ def index():
             for key, value in config.items(section):
                 config_dict[section][key] = value
     
-    return render_template('index.html', scripts=SCRIPTS, configData=config_dict)
+    # 创建一个不包含process对象的scripts字典副本
+    scripts_data = {}
+    for script_id, script in SCRIPTS.items():
+        scripts_data[script_id] = {
+            'name': script['name'],
+            'file': script['file'],
+            'log_file': script['log_file']
+        }
+    
+    return render_template('index.html', scripts=scripts_data, configData=config_dict)
 
 @app.route('/api/logs/<script_id>')
 def get_logs(script_id):
@@ -210,4 +219,4 @@ def wxpusher_callback():
 
 if __name__ == '__main__':
     port = int(get_env_config('PORT', 7860))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', debug=True,port=port)
