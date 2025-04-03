@@ -1,0 +1,160 @@
+2025-04-03 16:31:24,734 - ERROR - 解析短链接失败: 'JDMonitor' object has no attribute 'headers'
+2025-04-03 16:31:24,735 - ERROR - 无法从URL中提取商品ID: https://3.cn/2eg-GYHr
+2025-04-03 16:31:24,735 - INFO - 监控商品ID: None
+2025-04-03 16:31:24,735 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 16:31:24,735 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 16:31:24,735 - ERROR - 商品ID无效，无法检查商品状态
+2025-04-03 16:32:10,203 - INFO - 程序已手动停止
+2025-04-03 16:37:36,405 - ERROR - 解析短链接失败: 'JDMonitor' object has no attribute 'headers'
+2025-04-03 16:37:36,406 - ERROR - 无法从URL中提取商品ID: https://3.cn/2eg-GYHr
+2025-04-03 16:37:36,406 - INFO - 监控商品ID: None
+2025-04-03 16:37:36,406 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 16:37:36,406 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 16:37:36,406 - ERROR - 商品ID无效，无法检查商品状态
+2025-04-03 16:37:45,895 - INFO - 程序已手动停止
+2025-04-03 16:38:30,651 - INFO - 监控商品ID: 100182921772
+2025-04-03 16:38:30,653 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 16:38:30,653 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 16:38:31,058 - ERROR - 请求失败: Expecting value: line 2 column 1 (char 1)
+2025-04-03 16:38:50,351 - INFO - 程序已手动停止
+2025-04-03 16:40:02,642 - INFO - 监控商品ID: 100182921772
+2025-04-03 16:40:02,643 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 16:40:02,643 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 16:40:06,782 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:40:15,744 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:40:23,517 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:41:26,515 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:41:34,189 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:41:43,880 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:42:48,081 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:42:56,656 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:43:05,518 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:44:08,068 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:44:16,362 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:44:24,584 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:44:47,127 - INFO - 程序已手动停止
+2025-04-03 16:48:31,657 - INFO - 监控商品ID: 123456
+2025-04-03 16:48:31,658 - ERROR - WxPusher通知发送失败: {'success': False, 'msg': 'invalid token', 'data': None}
+2025-04-03 16:48:31,658 - INFO - 监控商品ID: 123456
+2025-04-03 16:48:31,659 - ERROR - WxPusher配置不完整，无法发送通知
+2025-04-03 16:48:31,659 - ERROR - WxPusher配置不完整，无法发送通知
+2025-04-03 16:48:31,659 - INFO - 监控商品ID: 123456
+2025-04-03 16:48:31,659 - ERROR - 发送WxPusher通知时出错: Expecting value: line 1 column 1 (char 0)
+2025-04-03 16:48:31,660 - INFO - 监控商品ID: 123456
+2025-04-03 16:48:31,660 - ERROR - 发送WxPusher通知时出错: Network error
+2025-04-03 16:48:31,660 - INFO - 监控商品ID: 123456
+2025-04-03 16:48:31,661 - INFO - WxPusher通知发送成功: 测试标题
+2025-04-03 16:53:23,912 - INFO - 监控商品ID: 100182921772
+2025-04-03 16:53:23,913 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 16:53:23,913 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 16:53:29,101 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:53:37,243 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:53:40,558 - INFO - 程序已手动停止
+2025-04-03 16:54:26,416 - INFO - 监控商品ID: 100182921772
+2025-04-03 16:54:26,417 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 16:54:26,417 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 16:54:31,337 - ERROR - JSON解析失败: Expecting value: line 2 column 1 (char 1), 响应内容: 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.
+2025-04-03 16:54:33,578 - INFO - 程序已手动停止
+2025-04-03 16:56:59,852 - INFO - 监控商品ID: 100182921772
+2025-04-03 16:56:59,854 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 16:56:59,854 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 16:57:56,018 - INFO - 监控商品ID: 100182921772
+2025-04-03 16:57:56,019 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 16:57:56,019 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 16:57:56,247 - ERROR - WxPusher通知发送失败: {'code': 1001, 'msg': 'appToken不正确', 'data': None, 'success': False}
+2025-04-03 16:57:56,247 - INFO - 商品已上架可购买，已发送通知
+2025-04-03 16:58:45,716 - INFO - 监控商品ID: 100182921772
+2025-04-03 16:58:45,717 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 16:58:45,717 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 16:58:45,941 - ERROR - WxPusher通知发送失败: {'code': 1001, 'msg': 'appToken不正确', 'data': None, 'success': False}
+2025-04-03 16:58:45,941 - INFO - 商品已上架可购买，已发送通知
+2025-04-03 16:59:13,173 - INFO - 监控商品ID: 100182921772
+2025-04-03 16:59:13,175 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 16:59:13,175 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 16:59:13,396 - ERROR - WxPusher通知发送失败: {'code': 1001, 'msg': 'appToken不正确', 'data': None, 'success': False}
+2025-04-03 16:59:13,396 - INFO - 商品已上架可购买，已发送通知
+2025-04-03 17:04:47,368 - INFO - 监控商品ID: 100182921772
+2025-04-03 17:04:47,370 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 17:04:47,370 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 17:04:47,581 - ERROR - WxPusher通知发送失败: {'code': 1001, 'msg': 'appToken不正确', 'data': None, 'success': False}
+2025-04-03 17:04:47,581 - INFO - 商品已上架可购买，已发送通知
+2025-04-03 17:08:51,422 - INFO - 监控商品ID: 100182921772
+2025-04-03 17:08:51,424 - INFO - 开始监控京东商品: https://3.cn/2eg-GYHr
+2025-04-03 17:08:51,424 - INFO - 检查间隔: 60秒, 提前通知时间: 5分钟
+2025-04-03 17:08:51,777 - INFO - WxPusher通知发送成功: 🎉 京东商品已上架可购买
+2025-04-03 17:08:51,777 - INFO - 商品已上架可购买，已发送通知

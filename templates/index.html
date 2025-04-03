@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>脚本管理面板</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .tab-active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .log-container {
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div id="app" class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">脚本管理面板</h1>
+        
+        <!-- 导航标签 -->
+        <div class="flex border-b mb-6">
+            <div @click="activeTab = 'scripts'" 
+                 :class="['px-4 py-2 cursor-pointer', activeTab === 'scripts' ? 'tab-active' : '']">脚本管理</div>
+            <div @click="activeTab = 'logs'" 
+                 :class="['px-4 py-2 cursor-pointer', activeTab === 'logs' ? 'tab-active' : '']">日志查看</div>
+            <div @click="activeTab = 'config'" 
+                 :class="['px-4 py-2 cursor-pointer', activeTab === 'config' ? 'tab-active' : '']">配置管理</div>
+        </div>
+        
+        <!-- 脚本管理标签页 -->
+        <div v-if="activeTab === 'scripts'" class="grid md:grid-cols-2 gap-6">
+            <div v-for="(script, id) in scripts" :key="id" 
+                 class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-200">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold">{% raw %}{{ script.name }}{% endraw %}</h2>
+                    <span :class="{
+                        'px-3 py-1 rounded-full text-sm font-semibold': true,
+                        'bg-green-100 text-green-800': scriptStatus[id] === 'running',
+                        'bg-red-100 text-red-800': scriptStatus[id] === 'stopped'
+                    }">
+                        {% raw %}{{ scriptStatus[id] === 'running' ? '运行中' : '已停止' }}{% endraw %}
+                    </span>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <button @click="startScript(id)" 
+                            :disabled="scriptStatus[id] === 'running'"
+                            :class="{
+                                'flex-1 py-2 px-4 rounded-md font-medium transition-colors duration-200': true,
+                                'bg-blue-500 text-white hover:bg-blue-600': scriptStatus[id] !== 'running',
+                                'bg-gray-300 cursor-not-allowed': scriptStatus[id] === 'running'
+                            }">
+                        启动
+                    </button>
+                    <button @click="stopScript(id)" 
+                            :disabled="scriptStatus[id] === 'stopped'"
+                            :class="{
+                                'flex-1 py-2 px-4 rounded-md font-medium transition-colors duration-200': true,
+                                'bg-red-500 text-white hover:bg-red-600': scriptStatus[id] !== 'stopped',
+                                'bg-gray-300 cursor-not-allowed': scriptStatus[id] === 'stopped'
+                            }">
+                        停止
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 日志查看标签页 -->
+        <div v-if="activeTab === 'logs'" class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">日志查看</h2>
+                <div class="flex items-center">
+                    <select v-model="selectedLogScript" class="mr-2 p-2 border rounded">
+                        <option v-for="(script, id) in scripts" :key="id" :value="id">{% raw %}{{ script.name }}{% endraw %}</option>
+                    </select>
+                    <button @click="fetchLogs" class="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600">
+                        刷新日志
+                    </button>
+                </div>
+            </div>
+            
+            <div class="log-container bg-gray-100 p-4 rounded text-sm">
+                <div v-if="logContent" v-html="formatLogContent(logContent)"></div>
+                <div v-else class="text-gray-500">选择脚本并点击刷新按钮查看日志</div>
+            </div>
+            
+            <div class="mt-2 text-right text-sm text-gray-500" v-if="logTimestamp">
+                最后更新: {% raw %}{{ logTimestamp }}{% endraw %}
+            </div>
+        </div>
+        
+        <!-- 配置管理标签页 -->
+        <div v-if="activeTab === 'config'" class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold">配置管理</h2>
+                <div>
+                    <button @click="saveConfig" class="bg-green-500 text-white py-1 px-3 rounded hover:bg-green-600">
+                        保存配置
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 二维码展示区域 -->
+            <div v-if="configData && configData.WxPusher && configData.WxPusher.qrcode_url" class="mb-6 text-center">
+                <h3 class="text-lg font-medium mb-4">微信扫码关注</h3>
+                <img :src="configData.WxPusher.qrcode_url" alt="微信二维码" class="mx-auto max-w-xs">
+                <div class="mt-4 space-y-2">
+                    <p class="text-sm text-gray-600">1. 请使用微信扫描上方二维码</p>
+                    <p class="text-sm text-gray-600">2. 关注公众号后系统将自动添加您的UID</p>
+                    <p class="text-sm text-gray-600">3. 完成后您将收到成功通知</p>
+                </div>
+                <div v-if="configData.WxPusher.uids" class="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <p class="text-sm font-medium text-gray-700">当前已添加的UID：</p>
+                    <p class="text-sm text-gray-600 break-all">{{ configData.WxPusher.uids }}</p>
+                </div>
+            </div>
+
+            <div v-if="configData">
+                <div v-for="(sectionData, section) in configData" :key="section" class="mb-6">
+                    <h3 class="text-lg font-medium mb-2 pb-1 border-b">{% raw %}{{ section }}{% endraw %}</h3>
+                    
+                    <div v-for="(value, key) in sectionData" :key="key" class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">{% raw %}{{ key }}{% endraw %}</label>
+                        <textarea 
+                            v-if="key.includes('uids') || value.length > 50" 
+                            v-model="configData[section][key]" 
+                            class="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
+                            rows="3"
+                        ></textarea>
+                        <input 
+                            v-else 
+                            v-model="configData[section][key]" 
+                            class="w-full p-2 border rounded focus:ring-blue-500 focus:border-blue-500"
+                        >
+                    </div>
+                </div>
+            </div>
+            <div v-else class="text-gray-500">加载配置中...</div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                scripts: {{ scripts|tojson|safe }},
+                scriptStatus: {},
+                activeTab: 'scripts',
+                selectedLogScript: Object.keys({{ scripts|tojson|safe }})[0] || '',
+                logContent: '',
+                logTimestamp: '',
+                configData: null
+            },
+            methods: {
+                async startScript(id) {
+                    try {
+                        const response = await fetch(`/api/start/${id}`);
+                        const data = await response.json();
+                        if (data.status === 'success') {
+                            this.updateStatus(id);
+                        } else {
+                            alert(data.message);
+                        }
+                    } catch (error) {
+                        alert('启动脚本失败');
+                    }
+                },
+                async stopScript(id) {
+                    try {
+                        const response = await fetch(`/api/stop/${id}`);
+                        const data = await response.json();
+                        if (data.status === 'success') {
+                            this.updateStatus(id);
+                        } else {
+                            alert(data.message);
+                        }
+                    } catch (error) {
+                        alert('停止脚本失败');
+                    }
+                },
+                async updateStatus(id) {
+                    try {
+                        const response = await fetch(`/api/status/${id}`);
+                        const data = await response.json();
+                        if (data.status === 'success') {
+                            this.$set(this.scriptStatus, id, data.data);
+                        }
+                    } catch (error) {
+                        console.error('获取状态失败:', error);
+                    }
+                },
+                async updateAllStatus() {
+                    for (const id in this.scripts) {
+                        await this.updateStatus(id);
+                    }
+                },
+                async fetchLogs() {
+                    if (!this.selectedLogScript) return;
+                    
+                    try {
+                        const response = await fetch(`/api/logs/${this.selectedLogScript}?lines=100`);
+                        const data = await response.json();
+                        
+                        if (data.status === 'success') {
+                            this.logContent = data.data;
+                            this.logTimestamp = data.timestamp;
+                        } else {
+                            alert(data.message);
+                        }
+                    } catch (error) {
+                        console.error('获取日志失败:', error);
+                        alert('获取日志失败');
+                    }
+                },
+                formatLogContent(content) {
+                    if (!content) return '';
+                    
+                    // 为不同级别的日志添加颜色
+                    return content
+                        .replace(/ERROR/g, '<span class="text-red-600 font-bold">ERROR</span>')
+                        .replace(/WARNING/g, '<span class="text-yellow-600 font-bold">WARNING</span>')
+                        .replace(/INFO/g, '<span class="text-blue-600 font-bold">INFO</span>');
+                },
+                async fetchConfig() {
+                    try {
+                        const response = await fetch('/api/config');
+                        const data = await response.json();
+                        
+                        if (data.status === 'success') {
+                            this.configData = data.data;
+                        } else {
+                            alert(data.message);
+                        }
+                    } catch (error) {
+                        console.error('获取配置失败:', error);
+                        alert('获取配置失败');
+                    }
+                },
+                async saveConfig() {
+                    try {
+                        const response = await fetch('/api/config', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(this.configData)
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (data.status === 'success') {
+                            alert('配置已保存');
+                        } else {
+                            alert(data.message);
+                        }
+                    } catch (error) {
+                        console.error('保存配置失败:', error);
+                        alert('保存配置失败');
+                    }
+                }
+            },
+            mounted() {
+                this.updateAllStatus();
+                // 每5秒更新一次状态
+                setInterval(this.updateAllStatus, 5000);
+                
+                // 加载配置
+                this.fetchConfig();
+            }
+        });
+    </script>
+</body>
+</html>
